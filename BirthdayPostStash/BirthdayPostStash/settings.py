@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'users',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -120,3 +121,4 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+LOGIN_REDIRECT_URL = '/users/profile/'
