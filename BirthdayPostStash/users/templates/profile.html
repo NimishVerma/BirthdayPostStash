@@ -6,5 +6,28 @@
 
 
 {% block body %}
-Welcome {{ request.user|title }}
+<div class="container">
+	Welcome {{user.userprofile}}
+<div class="offset-md-2 card" style="width: 38rem;position:centre">
+	 <div class="card-header">
+    Your Profile
+  </div>
+  <!--img class="card-img-top" src="..." alt="Card image cap"-->
+  <div class="card-body" >
+    <div class="container">
+    	<div class="col-md-6" style="float:left">
+    	<h5 class="card-title">{{ user.first_name|title}} {{user.last_name|title}}</h5>
+    	<h6 class="card-subtitle mb-2 text-muted">{{user.email}}</h6>
+    </div>
+    <div class="col-md-6" style="float:right">
+  <img class="card-img-top" src= "{{ user.userprofile.profile_image.url }}" width="240">
+
+    </div>
+</div>
+
+    </div>
+</div>
+</div>
+<form enctype="multipart/form-data" method="post" action="/upload/">
+
 {% endblock %}

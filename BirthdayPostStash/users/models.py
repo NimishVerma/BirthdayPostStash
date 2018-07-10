@@ -12,8 +12,8 @@ def get_image_path(instance, filename):
     return os.path.join('photos', str(instance.id), filename)
 
 class UserProfile(models.Model):
-    user = models.ForeignKey(User, unique=True)
-    profile_image = models.ImageField(upload_to=get_image_path, blank=True)
+    user = models.OneToOneField(User)
+    profile_image = models.ImageField(upload_to='profile_image', default='profile_image/blank.png')
 
     def __str__(self):
     	return self.user.username
@@ -23,3 +23,10 @@ def create_profile(sender, **kwargs):
 		user_profile = UserProfile.objects.create(user=kwargs['instance'])
 
 post_save.connect(create_profile,sender=User)
+
+class UserTags(models.Model):
+	name = models.CharField(max_length=32)
+	
+	def __unicode__(self):
+		return self.name
+
