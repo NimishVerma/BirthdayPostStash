@@ -11,8 +11,16 @@ from django.shortcuts import redirect
 from django import forms
 from django.contrib.auth.decorators import login_required
 from .forms import UploadFileForm
+from albums.models import *
 
-
+# from imagekit import ImageSpec, register
+# from imagekit.processors import ResizeToFill
+#
+# class Thumbnail(ImageSpec):
+#     processors = [ResizeToFill(100, 50)]
+#     format = 'JPEG'
+#     options = {'quality': 60}
+# register.generator('users:thumbnail', Thumbnail)
 
 
 def login_redirect(request):
@@ -21,7 +29,14 @@ def login_redirect(request):
 
 @login_required	
 def profile(request):
-	args = { 'user' : request.user }
+	user = request.user
+	user_id = User.objects.get(username=user).id
+	albumimages = AlbumImage.objects.filter(user=user)
+	people = People.objects.filter(created_by= user_id)
+	args = { 'user' : request.user,'images':albumimages,'people':people}
+	print args
+	print user_id
+	print People.objects.filter(created_by=1)
 	return render(request,'profile.html',args)
 
 
@@ -73,4 +88,5 @@ def upload_file(request):
     else:
         form = UploadFileForm()
     return render(request, 'upload.html', {'form': form})
+
 

@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users',
     'widget_tweaks',
+    'albums',
+    'imagekit',
 ]
 
 MIDDLEWARE = [
@@ -118,6 +120,7 @@ MEDIA_ROOT = BASE_DIR+'/media'
 MEDIA_URL = '/media/'
 
 # Static files (CSS, JavaScript, Images)
+
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 LOGIN_URL = '/users/login'
 STATIC_URL = '/static/'

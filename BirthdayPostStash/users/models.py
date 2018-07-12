@@ -7,6 +7,10 @@ from django.dispatch import Signal
 from django import forms
 from django.contrib.auth.models import User
 import os
+from albums.models import AlbumImage
+from imagekit.models import ProcessedImageField
+from imagekit.processors import ResizeToFit
+
 
 def get_image_path(instance, filename):
     return os.path.join('photos', str(instance.id), filename)
@@ -16,17 +20,20 @@ class UserProfile(models.Model):
     profile_image = models.ImageField(upload_to='profile_image', default='profile_image/blank.png')
 
     def __str__(self):
-    	return self.user.username
+        return self.user.username
+
 
 def create_profile(sender, **kwargs):
-	if kwargs['created']:
-		user_profile = UserProfile.objects.create(user=kwargs['instance'])
+    if kwargs['created']:
+        user_profile = UserProfile.objects.create(user=kwargs['instance'])
 
 post_save.connect(create_profile,sender=User)
 
 class UserTags(models.Model):
-	name = models.CharField(max_length=32)
-	
-	def __unicode__(self):
-		return self.name
+    name = models.CharField(max_length=32)
+
+    def __unicode__(self):
+        return self.name
+
+
 
