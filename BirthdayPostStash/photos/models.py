@@ -1,22 +1,31 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.db.models.signals import post_save
+import os
+import uuid
+
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from django.db.models.signals import post_save 
-from django.dispatch import Signal
-from django import forms
-from django.contrib.auth.models import User
-import os
+from users.models import UserProfile
 
 
 def get_image_path(instance, filename):
+    ext = filename.split('.')[-1]
+    filename = '{}.{}'.format(uuid.uuid4().hex, ext)
     return os.path.join('photos', str(instance.id), filename)
 
 
-class UserProfile(models.Model):
-    user = models.ForeignKey(User, unique=True)
-    profile_image = models.ImageField(upload_to=get_image_path, blank=True)
+class Photos(models.Model):
+
+    owner = models.ForeignKey(
+        UserProfile,
+        related_name="photos_owner"),
+    photo = models.ImageField(
+        upload_to=get_image_path, blank=True)
+    participants = models.ManyToManyField(
+        UserProfile,
+        related_name="photos_participants",
+        null=True,
+        balnk=True),
     create_date = models.DateTimeField(
         _("Created At"),
         auto_now_add=True)
@@ -31,14 +40,3 @@ class UserProfile(models.Model):
         _("Is Instance marked Active"),
         default=True,
         db_index=True)
-
-    def __str__(self):
-        return self.user.username
-
-
-def create_profile(sender, **kwargs):
-    if kwargs['created']:
-        UserProfile.objects.create(user=kwargs['instance'])
-
-
-post_save.connect(create_profile, sender=User)
