@@ -9,6 +9,9 @@ from django.contrib.auth.models import User
 
 from django.shortcuts import redirect 
 
+#TODO API implementation of authentication. 
+# Authentication will be done only once and following requests 
+# will be made through a token generated upon authentication
 
 def login_redirect(request):
 	return redirect('/users/login')

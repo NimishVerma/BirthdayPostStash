@@ -40,3 +40,13 @@ class Photos(models.Model):
         _("Is Instance marked Active"),
         default=True,
         db_index=True)
+
+    class Meta:
+        verbose_name = _('Photo')
+        verbose_name_plural = _('Photos')
+
+    def __unicode__(self):
+        return str(self.id)
+
+    def __str__(self):
+        return str(self.id)
