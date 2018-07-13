@@ -9,6 +9,8 @@ from rest_framework import serializers
 from rest_framework.authtoken.models import Token
 from users import settings as accounts_settings
 from users.models import User
+from users.services import UserService
+from users import messages
 
 
 class UserRegisterSerializer(serializers.ModelSerializer):
@@ -47,7 +49,7 @@ class UserRegisterSerializer(serializers.ModelSerializer):
         read_only_fields = ('is_active', 'auth_token',)
 
     def create(self, validated_data):
-        user_service = services.UserService()
+        user_service = UserService()
         user = user_service.create_user(**validated_data)
         user.extra_data = [
             {'company_name': validated_data.get('company_name')}
