@@ -82,3 +82,44 @@ class TokenSerializer(serializers.ModelSerializer):
     class Meta:
         model = Token
         fields = ('auth_token',)
+
+
+class UserLoginSerializer(serializers.Serializer):
+    """
+    Serializer User login
+
+    **Validate**
+        - validate user exists with given username
+        - Use UserService to verify credentials.
+
+    **Create**
+        - None
+    """
+
+    def __init__(self, *args, **kwargs):
+        super(UserLoginSerializer, self).__init__(*args, **kwargs)
+        self.user = None
+        self.fields[User.USERNAME_FIELD] = serializers.CharField()
+
+    password = serializers.CharField(
+        style={'input_type': 'password'})
+
+    def validate(self, data):
+        username = data.get(User.USERNAME_FIELD).lower()
+        password = data.get('password')
+
+        try:
+            user = User.objects.get(username=username)
+        except:
+            raise serializers.ValidationError(
+                messages.INVALID_CREDENTIALS_ERROR)
+        data['user'] = user
+        user_service = UserService()
+        is_valid = user_service.verify_account(user, password)
+        if not is_valid:
+            raise serializers.ValidationError(
+                messages.INACTIVE_ACCOUNT_ERROR)
+        return data
+
+    class Meta:
+        fields = (User.USERNAME_FIELD, 'password')

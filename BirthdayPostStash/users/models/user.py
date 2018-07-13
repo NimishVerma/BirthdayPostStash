@@ -45,12 +45,12 @@ class User(AbstractBaseUser, PermissionsMixin):
         default=uuid.uuid4,
         db_index=True)
 
-    is_staff = models.BooleanField(
-        _("staff status"),
-        default=False,
-        help_text=_("Designates whether the user \
-            can log into this admin site."),
-        db_index=True)
+    # is_staff = models.BooleanField(
+    #     _("staff status"),
+    #     default=False,
+    #     help_text=_("Designates whether the user \
+    #         can log into this admin site."),
+    #     db_index=True)
 
     is_active = models.BooleanField(
         _('active'),
