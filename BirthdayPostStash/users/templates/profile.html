@@ -1,10 +1,51 @@
-
-
-
 {% extends 'base.html' %}
+{% load imagekit %}
+
+
 
 
 
 {% block body %}
-Welcome {{ request.user|title }}
+<div class="container">
+	Welcome {{user.userprofile |title}}
+<div class="offset-md-2 card" style="width: 38rem;position:centre">
+	 <div class="card-header">
+    Your Profile
+  </div>
+  <!--img class="card-img-top" src="..." alt="Card image cap"-->
+  <div class="card-body" >
+    <div class="container">
+    	<div class="col-md-6" style="float:left">
+    	<h5 class="card-title">{{ user.first_name|title}} {{user.last_name|title}}</h5>
+    	<h6 class="card-subtitle mb-2 text-muted">{{user.email}}</h6>
+    </div>
+    <div class="col-md-6" style="float:right">
+  <img class="card-img-top" src= "{{ user.userprofile.profile_image.url }}" width="240">
+
+    </div>
+</div>
+
+    </div>
+</div>
+<br>
+<br>
+<div class="row">
+{% for person in people%}
+    <div class="col-md-4 card">
+
+            <img class="card-img-top" src ="{{ person.favourite.image.url }}">
+
+   <div class="card-body">
+    <h5 class="card-title">{{ person.name }}</h5>
+           <h6 class="card-subtitle mb-2 text-muted">{{ person.event }}</h6>
+
+   </div></div>
+{#{% generateimage 'users:thumbnail' source=image %}#}
+
+    {% endfor %}
+</div>
+</div>
+
+<form enctype="multipart/form-data" method="post" action="/upload/">
+
 {% endblock %}

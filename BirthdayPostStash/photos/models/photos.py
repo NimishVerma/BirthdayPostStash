@@ -5,7 +5,7 @@ import uuid
 
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from users.models import UserProfile
+from users.models import User
 
 
 def get_image_path(instance, filename):
@@ -17,15 +17,15 @@ def get_image_path(instance, filename):
 class Photos(models.Model):
 
     owner = models.ForeignKey(
-        UserProfile,
+        User,
         related_name="photos_owner"),
     photo = models.ImageField(
         upload_to=get_image_path, blank=True)
     participants = models.ManyToManyField(
-        UserProfile,
+        User,
         related_name="photos_participants",
         null=True,
-        balnk=True),
+        blank=True),
     create_date = models.DateTimeField(
         _("Created At"),
         auto_now_add=True)

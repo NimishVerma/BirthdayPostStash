@@ -38,6 +38,7 @@ DEFAULT_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'widget_tweaks',
+    'imagekit',
 ]
 
 THIRD_PARTY_APPS = [
@@ -47,7 +48,6 @@ THIRD_PARTY_APPS = [
     'django_filters',
     'djcelery',
     'explorer',
-    'haystack',
     'rest_framework',
     'rest_framework.authtoken',
 ]
@@ -119,7 +119,20 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'bpstash',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': '',
+    }
+}
 
+
+# CUSTOM USER MODEL
+
+AUTH_USER_MODEL = "users.User"
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
@@ -132,11 +145,12 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-MEDIA_ROOT = '/home/nimish/Desktop/Projects/Django/BirthdayStash/BirthdayPostStash/media'
+MEDIA_ROOT = BASE_DIR + '/media'
 MEDIA_URL = '/media/'
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.11/howto/static-files/
 
+# https://docs.djangoproject.com/en/1.11/howto/static-files/
+LOGIN_URL = '/users/login'
 STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = '/users/profile/'

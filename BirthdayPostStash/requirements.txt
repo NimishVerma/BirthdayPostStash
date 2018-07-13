@@ -23,3 +23,6 @@ pytz==2017.2
 requests==2.18.4
 django-widget-tweaks==1.4.2
 ipython
+imagekit
+Pillow
+MySQL-python
