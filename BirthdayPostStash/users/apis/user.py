@@ -111,7 +111,7 @@ class UserLogin(generics.GenericAPIView):
             user = serializer.validated_data.get('user')
             token, boolean = Token.objects.get_or_create(user=user)
             token.save()
-            user.login_attempts = 0
+            # user.login_attempts = 0
             user.save()
             data = serializers.TokenSerializer(token).data
             return response.Response(
@@ -119,4 +119,74 @@ class UserLogin(generics.GenericAPIView):
                 status=status.HTTP_200_OK,)
         return response.Response(
             data=serializer.errors,
+            status=status.HTTP_400_BAD_REQUEST)
+
+
+class UserLogout(views.APIView):
+    """
+    **Use this endpoint to logout user (remove user authentication token)**.
+
+    Url:
+        ``/users/logout/``
+
+    Permissions:
+        * Only authenticated Users
+
+    **Post**
+        - Delete Auth token
+    """
+    permission_classes = (
+        permissions.IsAuthenticated,
+    )
+
+    def post(self, request):
+        Token.objects.filter(user=request.user)
+        return response.Response(
+            data=messages.LOG_OUT_SUCCESS,
+            status=status.HTTP_200_OK)
+
+# TODO Fix Bug HTTP:500
+
+
+class GetToken(views.APIView):
+    """
+    Use this end-point to get an auth token.
+
+    **Url**
+        ``/t2b/accounts/get-token/``
+
+    **Permissions**
+        - Any is allowed.
+
+    **Get**
+        - From database get an auth token.
+
+    """
+    permission_classes = (
+        permissions.AllowAny,
+    )
+
+    def get(self, request):
+        """
+        If serializer is valid.
+            - call action.
+        """
+        unique_uuid = self.request.META.get(
+            'HTTP_UNIQUEUUID')
+        a = request.COOKIES.get('Authorization')
+        print a
+        data = {}
+        if unique_uuid:
+            user = User.objects.filter(unique_uuid=unique_uuid)
+            if user:
+                token, boolean = Token.objects.get_or_create(
+                    user=user.first())
+                token.save()
+                data = serializers.TokenSerializer(token).data
+                return response.Response(
+                    data=data,
+                    status=status.HTTP_200_OK,
+                )
+        return response.Response(
+            data=data,
             status=status.HTTP_400_BAD_REQUEST)
