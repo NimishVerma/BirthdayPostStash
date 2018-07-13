@@ -30,18 +30,34 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
+DEFAULT_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'users',
     'widget_tweaks',
-    'albums',
     'imagekit',
 ]
+
+THIRD_PARTY_APPS = [
+    'push_notifications',
+    'anymail',
+    'corsheaders',
+    'django_filters',
+    'djcelery',
+    'explorer',
+    'rest_framework',
+    'rest_framework.authtoken',
+]
+
+LOCAL_APPS = [
+    'users',
+    'photos'
+]
+
+INSTALLED_APPS = DEFAULT_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -103,7 +119,20 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'bpstash',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': '',
+    }
+}
 
+
+# CUSTOM USER MODEL
+
+AUTH_USER_MODEL = "users.User"
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
@@ -116,7 +145,7 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-MEDIA_ROOT = BASE_DIR+'/media'
+MEDIA_ROOT = BASE_DIR + '/media'
 MEDIA_URL = '/media/'
 
 # Static files (CSS, JavaScript, Images)
