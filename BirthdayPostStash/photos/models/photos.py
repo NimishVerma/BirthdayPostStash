@@ -6,7 +6,7 @@ import uuid
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from users.models import User
-
+from persons.models import Person
 
 def get_image_path(instance, filename):
     ext = filename.split('.')[-1]
@@ -22,10 +22,10 @@ class Photos(models.Model):
     photo = models.ImageField(
         upload_to=get_image_path, blank=True)
     participants = models.ManyToManyField(
-        User,
+        Person,
         related_name="photos_participants",
         null=True,
-        blank=True),
+        blank=True)
     create_date = models.DateTimeField(
         _("Created At"),
         auto_now_add=True)
