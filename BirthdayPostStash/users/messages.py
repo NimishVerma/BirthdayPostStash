@@ -8,3 +8,4 @@ USERNAME_EXISTS_ERROR = _('User with this username already exists.')
 INVALID_CREDENTIALS_ERROR = _('Unable to login with provided credentials.')
 INACTIVE_ACCOUNT_ERROR = _(
     'Your account is inactive or maybe password is wrong.')
+LOG_OUT_SUCCESS = _('You are successfully logged out')
