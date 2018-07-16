@@ -1,1 +1,1 @@
-from .photos import PhotoSerializer
+from .photos import PhotoSerializer, PhotoPublicSerializer

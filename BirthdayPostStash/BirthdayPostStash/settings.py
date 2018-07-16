@@ -54,7 +54,8 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     'users',
-    'photos'
+    'photos',
+    'persons',
 ]
 
 INSTALLED_APPS = DEFAULT_APPS + THIRD_PARTY_APPS + LOCAL_APPS

@@ -1,26 +1,24 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from rest_framework import views, response, status, permissions
-from photos.serializer import PhotoSerializer
+from rest_framework import generics, permissions
+from ..serializers import PhotoSerializer, PhotoPublicSerializer
+from ..models import Photos
 
 
-class CreatePhoto(views.APIView):
+class CreatePhoto(generics.CreateAPIView):
     """
     End-Point to add photos
     """
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    permission_classes = (permissions.IsAuthenticated,)
+    serializer_class = PhotoSerializer
+    model = Photos
 
-    def post(self, request, *args, **kwargs):
 
-        serializer = PhotoSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return response.Response(
-                serializer.data, status=status.HTTP_201_CREATED)
-        return response.Response(
-            serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+class ListPhoto(generics.ListAPIView):
+    permission_classes = (permissions.IsAuthenticated,)
+    serializer_class = PhotoPublicSerializer
+    model = Photos
 
-    def pre_save(self, obj):
-        obj.owner = self.request.user
-
+    def get_queryset(self):
+        return self.model.objects.all()

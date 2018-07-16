@@ -8,6 +8,7 @@ from django.utils.translation import ugettext_lazy as _
 from users.models import User
 from persons.models import Person
 
+
 def get_image_path(instance, filename):
     ext = filename.split('.')[-1]
     filename = '{}.{}'.format(uuid.uuid4().hex, ext)
@@ -18,7 +19,7 @@ class Photos(models.Model):
 
     owner = models.ForeignKey(
         User,
-        related_name="photos_owner"),
+        related_name="photos_owner")
     photo = models.ImageField(
         upload_to=get_image_path, blank=True)
     participants = models.ManyToManyField(
