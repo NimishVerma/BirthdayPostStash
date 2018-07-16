@@ -31,8 +31,6 @@ class UserRegisterSerializer(serializers.ModelSerializer):
 
     auth_token = serializers.SerializerMethodField()
 
-    company_name = serializers.CharField(write_only=True)
-
     def get_auth_token(self, obj):
         token, boolean = Token.objects.get_or_create(user=obj)
         return TokenSerializer(token).data.get('auth_token')
@@ -44,16 +42,12 @@ class UserRegisterSerializer(serializers.ModelSerializer):
             User._meta.pk.name,
             'password', 'is_active',
             'auth_token',
-            'company_name'
         )
         read_only_fields = ('is_active', 'auth_token',)
 
     def create(self, validated_data):
         user_service = UserService()
         user = user_service.create_user(**validated_data)
-        user.extra_data = [
-            {'company_name': validated_data.get('company_name')}
-        ]
         user.save()
         return user
 

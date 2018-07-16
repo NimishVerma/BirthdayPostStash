@@ -6,7 +6,11 @@ from django.contrib.auth.models import BaseUserManager
 
 
 class UserQuerySet(models.QuerySet):
-    pass
+    def exists_by_email(self, email):
+        return self.filter(email=email).exists()
+
+    def exists_by_username(self, username):
+        return self.filter(username=username).exists()
 
 
 class UserManager(BaseUserManager):

@@ -61,7 +61,7 @@ class UserRegister(generics.CreateAPIView):
         return response_obj
 
     def perform_create(self, serializer):
-        serializer.save
+        serializer.save()
 
 
 class UserLogin(generics.GenericAPIView):
