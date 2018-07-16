@@ -35,8 +35,8 @@ class PhotoSerializer(serializers.ModelSerializer):
         exclude = ('owner', 'is_active', 'is_deleted')
 
 
-class PhotoPublicSerializer(serializers.ModelField):
-    participants = PersonPublicSerializer(many=True)
+class PhotoPublicSerializer(serializers.ModelSerializer):
+    participants = PersonPublicSerializer(read_only=True, many=True)
 
     class Meta:
         model = Photos
