@@ -27,4 +27,4 @@ imagekit
 Pillow
 MySQL-python
 whitenoise
-
+django-heroku
