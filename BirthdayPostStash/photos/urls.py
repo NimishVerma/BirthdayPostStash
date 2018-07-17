@@ -7,6 +7,9 @@ from .apis import *
 
 urlpatterns = [
     url(r'^create-photo/',
-        CreatePhoto,
+        CreatePhoto.as_view(),
         name="api_create_photo"),
+    url(r'^list-photo/',
+        ListPhoto.as_view(),
+        name="api_list_photo"),
 ]

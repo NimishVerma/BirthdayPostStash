@@ -5,8 +5,13 @@
 Road Plan
 =========
 
-1. Manage User -reg/login/forget
+1. Manage User -~~reg/login/~~forget
 2. Add P-picture
+3. Person module:
+        .apis: get person, create person, delete person, update person's details
+        .serialize persons
+        .set fav_pic for person object
+        
 3. Add image obj foreign key-ed to user
 4. add FC and FR to gallery
 
@@ -30,4 +35,6 @@ Installation
 Current Flow
 ==============
 https://ibb.co/h8b698
+
+
 
