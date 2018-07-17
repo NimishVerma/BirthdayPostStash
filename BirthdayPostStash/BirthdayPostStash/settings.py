@@ -27,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['demo-bpstash.herokuapp.com']
 import dj_database_url
-DATABASES['default'] =  dj_database_url.config()
 
 # Application definition
 
@@ -144,7 +143,8 @@ AUTH_PASSWORD_VALIDATORS = [
 #        'HOST': '',
 #    }
 #}
-
+DATABASES = {}
+DATABASES['default'] =  dj_database_url.config()
 
 # CUSTOM USER MODEL
 
