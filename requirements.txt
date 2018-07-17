@@ -72,4 +72,4 @@ virtualenv==16.0.0
 virtualenv-clone==0.3.0
 wcwidth==0.1.7
 whitenoise==3.3.1
-
+dj-database-url==0.2.1
