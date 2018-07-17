@@ -25,7 +25,7 @@ SECRET_KEY = 'deb-1ma_g(-=ej8kewv+islwos^!j*n#_6um(5k-#z*to2v6*t'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['demo-bpstash.herokuapp.com']
 
 
 # Application definition
