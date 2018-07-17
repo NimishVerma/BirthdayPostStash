@@ -5,7 +5,6 @@ from django.db import models
 
 # Create your models here.
 from users.models import User
-from photos.models import Photos
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -41,11 +40,7 @@ class Person(models.Model):
         _("Is Instance marked Active"),
         default=True,
         db_index=True)
-    top_photo = models.ForeignKey(
-        Photos,
-        related_name="master_photo"
-        )
-
+    
     class Meta:
         verbose_name = _('Person')
         verbose_name_plural = _('Persons')

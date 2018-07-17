@@ -29,5 +29,5 @@ class GetPersonsByUser(views.APIView):
     def post(self, request, *args, **kwargs):
         user = request.user
         queryset = Person.objects.filter(created_by = user)
-        
+        return queryset
 

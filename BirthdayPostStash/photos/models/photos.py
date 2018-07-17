@@ -27,6 +27,11 @@ class Photos(models.Model):
         related_name="photos_participants",
         null=True,
         blank=True)
+    favourite_for = models.ForeignKey(
+        Person,
+        related_name='favourite_for',
+        null=True,
+        blank=True)
     create_date = models.DateTimeField(
         _("Created At"),
         auto_now_add=True)
@@ -41,6 +46,7 @@ class Photos(models.Model):
         _("Is Instance marked Active"),
         default=True,
         db_index=True)
+
 
     class Meta:
         verbose_name = _('Photo')
