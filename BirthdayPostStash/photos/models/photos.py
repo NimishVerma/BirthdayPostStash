@@ -29,7 +29,7 @@ class Photos(models.Model):
         blank=True)
     favourite_for = models.ForeignKey(
         Person,
-        related_name='favourite_for',
+        related_name='favourited',
         null=True,
         blank=True)
     create_date = models.DateTimeField(
