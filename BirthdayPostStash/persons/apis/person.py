@@ -1,9 +1,11 @@
 from __future__ import unicode_literals
 
 from rest_framework import views, response, status, permissions
-from pesons.serializer import PersonSerializer
+from persons.serializer import PersonPublicSerializer
 
 from persons.models import Person
+
+
 class CreatePerson(views.APIView):
     """
     End point to add Persons
@@ -11,8 +13,8 @@ class CreatePerson(views.APIView):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
     def post(self, request, *args, **kwargs):
-        serializer = PersonSerializer(data=request.data)
-         if serializer.is_valid():
+        serializer = PersonPublicSerializer(data=request.data)
+        if serializer.is_valid():
             serializer.save()
             return response.Response(
                 serializer.data, status=status.HTTP_201_CREATED)
@@ -28,6 +30,5 @@ class GetPersonsByUser(views.APIView):
 
     def post(self, request, *args, **kwargs):
         user = request.user
-        queryset = Person.objects.filter(created_by = user)
+        queryset = Person.objects.filter(created_by=user)
         return queryset
-
