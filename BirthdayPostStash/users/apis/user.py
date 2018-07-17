@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-import random
+import datetime
 
 # Core Python & django imports at top
 from django.contrib.auth import get_user_model
@@ -110,7 +110,9 @@ class UserLogin(generics.GenericAPIView):
         if serializer.is_valid():
             user = serializer.validated_data.get('user')
             token, boolean = Token.objects.get_or_create(user=user)
-            token.save()
+            if not boolean:
+                token.created = datetime.datetime.now()
+                token.save()
             # user.login_attempts = 0
             user.save()
             data = serializers.TokenSerializer(token).data
