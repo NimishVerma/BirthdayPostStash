@@ -6,7 +6,6 @@ from rest_framework import serializers
 from persons.models import Person
 
 
-
 class PersonPublicSerializer(serializers.ModelSerializer):
     class Meta:
         model = Person
