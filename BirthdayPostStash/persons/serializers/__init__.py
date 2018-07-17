@@ -1,1 +1,1 @@
-from person import PersonSerializer
+from .person import PersonPublicSerializer

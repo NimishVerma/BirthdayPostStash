@@ -7,7 +7,8 @@ from persons.models import Person
 
 
 
-class PersonSerializer(serializers.ModelSerializer):
+class PersonPublicSerializer(serializers.ModelSerializer):
     class Meta:
         model = Person
-        fields = ('name', 'email', 'for_event', 'remind_on')
+        fields = '__all__'
+
