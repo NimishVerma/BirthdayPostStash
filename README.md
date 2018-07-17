@@ -14,7 +14,8 @@ Road Plan
         
 3. Add image obj foreign key-ed to user
 4. add FC and FR to gallery
-5. Host on ec2 instance(Refer:https://gist.github.com/Atem18/4696071)
+5. setting up ec2 instance(Refer:https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html)
+6. Host on ec2 instance(Refer:https://gist.github.com/Atem18/4696071)
 
 
 Installation
