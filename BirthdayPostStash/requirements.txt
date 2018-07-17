@@ -26,3 +26,5 @@ ipython
 imagekit
 Pillow
 MySQL-python
+whitenoise
+
