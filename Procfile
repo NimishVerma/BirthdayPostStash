@@ -1,1 +1,1 @@
-web: sh -c 'cd ./BirthdayPostStash/ gunicorn BirthdayPostStash.wsgi --log-file -
+web: sh -c 'cd ./BirthdayPostStash/' && gunicorn BirthdayPostStash.wsgi --log-file -'
