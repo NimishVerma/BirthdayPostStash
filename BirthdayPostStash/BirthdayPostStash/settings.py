@@ -25,8 +25,8 @@ SECRET_KEY = 'deb-1ma_g(-=ej8kewv+islwos^!j*n#_6um(5k-#z*to2v6*t'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['demo-bpstash.herokuapp.com']
+import dj_database_url
 
 # Application definition
 
@@ -134,17 +134,18 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'bpstash',
-        'USER': 'root',
-        'PASSWORD': 'root',
-        'HOST': '',
-    }
-}
-
-
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.mysql',
+#        'NAME': 'bpstash',
+#        'USER': 'root',
+#       'PASSWORD': '123',
+#        'HOST': '',
+#    }
+#}
+DATABASES = {}
+DATABASES['default'] =  dj_database_url.config()
+DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql'
 # CUSTOM USER MODEL
 
 AUTH_USER_MODEL = "users.User"
@@ -167,5 +168,20 @@ MEDIA_URL = '/media/'
 
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 LOGIN_URL = '/users/login'
-STATIC_URL = '/static/'
+
 LOGIN_REDIRECT_URL = '/users/profile/'
+
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.9/howto/static-files/
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+STATIC_URL = '/static/'
+
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_ROOT, 'static'),
+)
+
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
