@@ -134,18 +134,20 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.mysql',
-#        'NAME': 'bpstash',
-#        'USER': 'root',
-#       'PASSWORD': '123',
-#        'HOST': '',
-#    }
-#}
-DATABASES = {}
-DATABASES['default'] =  dj_database_url.config()
-DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql'
+
+DATABASES = {
+   'default': {
+       'ENGINE': 'django.db.backends.mysql',
+       'NAME': 'bpstash',
+       'USER': 'root',
+       'PASSWORD': 'root',
+       'HOST': '',
+   }
+}
+
+# DATABASES = {}
+# DATABASES['default'] =  dj_database_url.config()
+# DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql'
 # CUSTOM USER MODEL
 
 AUTH_USER_MODEL = "users.User"
@@ -178,10 +180,10 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
 
-# Extra places for collectstatic to find static files.
-STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT, 'static'),
-)
+# # Extra places for collectstatic to find static files.
+# STATICFILES_DIRS = (
+#     os.path.join(PROJECT_ROOT, 'static'),
+# )
 
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
