@@ -1,6 +1,6 @@
 # BirthdayPostStash
 ~~tba~~
-https://demo-bpstash.herokuapp.com/
+https://demo-bpstash.herokuapp.com/admin
 
 Road Plan
 =========
