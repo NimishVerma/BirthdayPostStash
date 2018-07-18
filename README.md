@@ -14,8 +14,10 @@ Road Plan
         
 3. Add image obj foreign key-ed to user
 4. add FC and FR to gallery
-5. setting up ec2 instance(Refer:https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html)
-6. Host on ec2 instance(Refer:https://gist.github.com/Atem18/4696071)
+5. Setting up djcelery(Refer:http://michal.karzynski.pl/blog/2014/05/18/setting-up-an-asynchronous-task-queue-for-django-using-celery-redis/, https://github.com/celery/celery/tree/master/examples/django/proj)
+6. Celery with supervisord(Refer:https://thomassileo.name/blog/2012/08/20/how-to-keep-celery-running-with-supervisor/)
+7. Setting up ec2 instance(Refer:https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html)
+8. Host on ec2 instance(Refer:https://gist.github.com/Atem18/4696071)
 
 
 Installation
@@ -29,9 +31,6 @@ Installation
 6. source activate.sh
 7. pip install -r requirements.txt
 8. python manage.py runserver
-
-
-(Please work on this virtual env and if you insall dependencies, freeze and update them in requirements.txt)
 
 
 Current Flow
