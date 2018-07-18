@@ -26,7 +26,7 @@ SECRET_KEY = 'deb-1ma_g(-=ej8kewv+islwos^!j*n#_6um(5k-#z*to2v6*t'
 DEBUG = False
 
 ALLOWED_HOSTS = ['demo-bpstash.herokuapp.com']
-import dj_database_url
+#import dj_database_url
 
 # Application definition
 
