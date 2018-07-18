@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'deb-1ma_g(-=ej8kewv+islwos^!j*n#_6um(5k-#z*to2v6*t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['demo-bpstash.herokuapp.com']
+ALLOWED_HOSTS = []
 #import dj_database_url
 
 # Application definition
