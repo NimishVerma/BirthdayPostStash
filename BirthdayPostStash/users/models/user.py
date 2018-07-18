@@ -83,9 +83,6 @@ class User(AbstractBaseUser, PermissionsMixin):
                 },
                 code=400
             )
-        else:
-            super(User, self).set_password(password)
-            self.save()
 
     class Meta:
         verbose_name = _('User')
