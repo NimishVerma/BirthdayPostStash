@@ -1,4 +1,4 @@
-from __future__ import unicode_literals
+    from __future__ import unicode_literals
 
 from rest_framework import views, response, status, permissions
 from persons.serializer import PersonPublicSerializer

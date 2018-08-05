@@ -70,22 +70,22 @@ class User(AbstractBaseUser, PermissionsMixin):
         "last_name",
     ]
 
-    def set_password(self, password):
-        match = re.search(
-            "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[A-Za-z\d$@$!%*#?&]{6,123}$",
-            password
-        )
-        if not match:
-            raise ValidationError(
-                detail={
-                    "non_field_errors": [
-                        "Password should have at least 6 characters, 1 capital alphabet and 1 numeric character."]
-                },
-                code=400
-            )
-        else:
-            super(User, self).set_password(password)
-            self.save()
+    # def set_password(self, password):
+    #     match = re.search(
+    #         "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[A-Za-z\d$@$!%*#?&]{6,123}$",
+    #         password
+    #     )
+    #     if not match:
+    #         raise ValidationError(
+    #             detail={
+    #                 "non_field_errors": [
+    #                     "Password should have at least 6 characters, 1 capital alphabet and 1 numeric character."]
+    #             },
+    #             code=200
+    #         )
+    #     else:
+    #         super(User, self).set_password(password)
+    #         self.save()
 
     class Meta:
         verbose_name = _('User')

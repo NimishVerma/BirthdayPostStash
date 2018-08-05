@@ -22,3 +22,12 @@ class ListPhoto(generics.ListAPIView):
 
     def get_queryset(self):
         return self.model.objects.all()
+
+
+class ListPhotosByPerson(generics.ListAPIView):
+    permission_classes = (permissions.IsAuthenticated,)
+    serializer_class = PhotoPublicSerializer
+    model = Photos
+
+    def get_queryset(self):
+        return self.model.objects.filter(participants)

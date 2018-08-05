@@ -140,7 +140,7 @@ DATABASES = {
        'ENGINE': 'django.db.backends.mysql',
        'NAME': 'bpstash',
        'USER': 'root',
-       'PASSWORD': 'root',
+       'PASSWORD': '123',
        'HOST': '',
    }
 }
