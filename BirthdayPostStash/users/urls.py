@@ -10,5 +10,10 @@ urlpatterns = [
         r'setup-profile/$',
         apis.SetupUserProfile.as_view(),
         name='api_setup_profile'
+    ),
+    url(
+        r'get-profile/(?P<pk>[0-9]+)$',
+        apis.GetUserProfile.as_view(),
+        name='api_get_profile'
     )
 ]

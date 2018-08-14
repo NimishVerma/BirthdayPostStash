@@ -5,6 +5,7 @@ from rest_framework import (
     status, response
 )
 from users import serializers
+from users.models import UserProfile
 
 
 class SetupUserProfile(generics.CreateAPIView):
@@ -13,6 +14,7 @@ class SetupUserProfile(generics.CreateAPIView):
     permission_classes = (
         permissions.IsAuthenticated,
     )
+    model = UserProfile
 
     def post(self, request, *args, **kwargs):
         print self.request.user, "USERRRRRRR"
@@ -28,3 +30,14 @@ class SetupUserProfile(generics.CreateAPIView):
         return response.Response(
             data={'detail': serializer.errors},
             status=status.HTTP_400_BAD_REQUEST)
+
+
+class GetUserProfile(generics.RetrieveAPIView):
+    serializer_class = serializers.UserProfileSerializer
+    permission_classes = (
+        permissions.AllowAny,
+    )
+    model = UserProfile
+
+    def get_queryset(self):
+        return self.model.objects.all()
