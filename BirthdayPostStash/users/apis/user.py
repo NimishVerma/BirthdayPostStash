@@ -5,8 +5,6 @@ import datetime
 
 # Core Python & django imports at top
 from django.contrib.auth import get_user_model
-from django.forms.models import model_to_dict
-from django.contrib.auth.models import Group
 
 # Third party lib imports
 from rest_framework import permissions, generics, response, status, views
@@ -14,8 +12,7 @@ from rest_framework.authtoken.models import Token
 
 from users import (
     serializers, messages,
-    settings as accounts_settings,
-    services)
+)
 
 User = get_user_model()
 

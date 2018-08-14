@@ -47,7 +47,6 @@ class Photos(models.Model):
         default=True,
         db_index=True)
 
-
     class Meta:
         verbose_name = _('Photo')
         verbose_name_plural = _('Photos')
