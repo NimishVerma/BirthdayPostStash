@@ -51,3 +51,7 @@ class UserProfile(models.Model):
     date_of_birth = models.DateField(
         _("date_of_birth"),
         db_index=True)
+
+    def __str__(self):
+	return self.user.username
+

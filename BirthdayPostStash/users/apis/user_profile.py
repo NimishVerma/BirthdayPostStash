@@ -17,7 +17,7 @@ class SetupUserProfile(generics.CreateAPIView):
     model = UserProfile
 
     def post(self, request, *args, **kwargs):
-        print self.request.user, "USERRRRRRR"
+
         serializer = self.serializer_class(
             data=request.data, context={
                 'view': self,
@@ -38,6 +38,7 @@ class GetUserProfile(generics.RetrieveAPIView):
         permissions.AllowAny,
     )
     model = UserProfile
-
-    def get_queryset(self):
-        return self.model.objects.all()
+    lookup_field = 'username'
+    def get_object(self):
+	key = self.kwargs.get('username')
+        return self.model.objects.get(user__username=key)

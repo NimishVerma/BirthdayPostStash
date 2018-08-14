@@ -12,7 +12,7 @@ urlpatterns = [
         name='api_setup_profile'
     ),
     url(
-        r'get-profile/(?P<pk>[0-9]+)$',
+        r'profile/(?P<username>[0-z]+)$',
         apis.GetUserProfile.as_view(),
         name='api_get_profile'
     )
