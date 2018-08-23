@@ -132,6 +132,9 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
+    {
+        'NAME': 'BirthdayPostStash.password_validators.CustomPasswordValidator',
+    }
 ]
 
 

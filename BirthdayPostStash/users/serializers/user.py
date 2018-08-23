@@ -4,6 +4,8 @@ from __future__ import unicode_literals
 # from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group
 from django.utils import timezone
+import django.contrib.auth.password_validation as validators
+
 
 from rest_framework import serializers
 from rest_framework.authtoken.models import Token
@@ -59,6 +61,10 @@ class UserRegisterSerializer(serializers.ModelSerializer):
                 raise serializers.ValidationError(
                     messages.EMAIL_EXISTS_ERROR)
         return email
+
+    def validate_password(self, password):
+        validators.validate_password(password=password)
+        return password
 
     def validate_username(self, username):
         username = username.lower()
