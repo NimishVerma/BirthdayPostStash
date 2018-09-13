@@ -26,6 +26,9 @@ SECRET_KEY = 'deb-1ma_g(-=ej8kewv+islwos^!j*n#_6um(5k-#z*to2v6*t'
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
+CORS_ORIGIN_ALLOW_ALL = True
+
 #import dj_database_url
 
 # Application definition
@@ -39,6 +42,8 @@ DEFAULT_APPS = [
     'django.contrib.staticfiles',
     'widget_tweaks',
     'imagekit',
+    'corsheaders'
+
 ]
 
 THIRD_PARTY_APPS = [
@@ -61,6 +66,7 @@ LOCAL_APPS = [
 INSTALLED_APPS = DEFAULT_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'BirthdayPostStash.middleware.CustomMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -143,7 +149,7 @@ DATABASES = {
        'ENGINE': 'django.db.backends.mysql',
        'NAME': 'bpstash',
        'USER': 'root',
-       'PASSWORD': '123',
+       'PASSWORD': 'root',
        'HOST': '',
    }
 }

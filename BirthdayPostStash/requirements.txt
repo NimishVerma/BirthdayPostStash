@@ -28,3 +28,4 @@ Pillow
 MySQL-python
 whitenoise
 django-heroku
+django-cors-headers
