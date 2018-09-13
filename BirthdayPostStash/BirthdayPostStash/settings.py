@@ -41,8 +41,6 @@ DEFAULT_APPS = [
     'django.contrib.staticfiles',
     'widget_tweaks',
     'imagekit',
-    'corsheaders'
-
 ]
 
 THIRD_PARTY_APPS = [
