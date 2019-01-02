@@ -21,6 +21,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^users/', include('users.urls')),
     url(r'^photos/', include('photos.urls')),
+    url(r'^persons/', include('persons.urls')),
 ]
     # url(r'^$',views.login_redirect,name='login_redirect'),
 # ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
