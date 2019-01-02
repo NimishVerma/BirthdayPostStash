@@ -11,7 +11,7 @@ class CreatePerson(views.APIView):
     """
     End point to add Persons
     """
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    permission_classes = (permissions.IsAuthenticated,)
 
     def post(self, request, *args, **kwargs):
         serializer = PersonPublicSerializer(data=request.data)
@@ -30,9 +30,9 @@ class GetPersonsByUser(views.APIView):
     """
     End point to get all friends of a user
     """
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    permission_classes = (permissions.IsAuthenticated,)
 
-    def post(self, request, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
         user = request.user
         queryset = Person.objects.filter(created_by=user)
         return queryset
@@ -42,13 +42,13 @@ class GetTopFive(generics.ListAPIView):
     """
     End point to get top 5 friends
     """
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    permission_classes = (permissions.IsAuthenticated,)
     serializer_class = PersonPublicSerializer 
     model = Person
     def get_queryset(self):
 	all_friends = []
 	top_friends = {}
-        all_friends = self.model.objects.filter(created_by=user)
+        all_friends = self.model.objects.filter(created_by=self.request.user)
         if all_friends:
 	    for friend in all_friends:
 		photos = []
