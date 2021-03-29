@@ -52,7 +52,7 @@ prompt-toolkit==1.0.15
 psycopg2==2.7.3.1
 ptyprocess==0.6.0
 pycparser==2.18
-Pygments==2.2.0
+Pygments==2.7.4
 PyJWT==1.6.4
 python-dateutil==2.6.1
 python-quickbooks==0.7.3
