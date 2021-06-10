@@ -10,7 +10,7 @@ cffi==1.11.5
 chardet==3.0.4
 cryptography==2.2.2
 decorator==4.3.0
-Django==1.11.7
+Django==2.2.24
 django-anymail==1.2
 django-autoslug==1.9.3
 django-celery==3.2.1
