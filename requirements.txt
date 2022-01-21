@@ -36,7 +36,7 @@ hyperframe==3.2.0
 idna==2.6
 imagekit==1.0.6
 ipaddress==1.0.22
-ipython==5.7.0
+ipython==7.16.3
 ipython-genutils==0.2.0
 kombu==3.0.37
 mixer==5.6.6
